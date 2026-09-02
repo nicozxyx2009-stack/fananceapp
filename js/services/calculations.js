@@ -76,6 +76,24 @@ const Calculations = {
     return meta ? meta.color : "#9AA4BC";
   },
 
+  // ---------- categoryId (Parte 2) ----------
+  // O app inteiro ainda usa o NOME da categoria como chave principal
+  // (ex: "Alimentação") — é simples e já é uma fonte única de verdade.
+  // categoryId existe como um identificador estável adicional, útil se
+  // no futuro o nome de uma categoria puder mudar sem quebrar referências
+  // antigas. Registros antigos no localStorage que só tinham "category"
+  // continuam funcionando normalmente; o campo categoryId é preenchido
+  // por migração (ver State._migrateSchema) e na criação de novos registros.
+  getCategoryId(categoryName) {
+    const meta = CATEGORY_META.find((c) => c.name === categoryName);
+    return meta ? meta.id : null;
+  },
+
+  getCategoryNameById(categoryId) {
+    const meta = CATEGORY_META.find((c) => c.id === categoryId);
+    return meta ? meta.name : null;
+  },
+
   getRecurringTotal() {
     return State.data.recurring.filter((r) => r.active !== false).reduce((sum, r) => sum + r.amount, 0);
   },

@@ -112,9 +112,12 @@ const Charts = {
         const barH = (item[valueKey] / maxVal) * chartH;
         const x = padding.left + i * (barWidth + barGap);
         const y = padding.top + chartH - barH;
+        // item.isDemo (opcional): distingue visualmente dado histórico fixo
+        // de dado calculado a partir das transações reais do usuário.
+        const barClass = item.isDemo ? "chart-bar-rect chart-bar-rect--demo" : "chart-bar-rect";
         return `
-          <rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${barWidth.toFixed(1)}" height="${barH.toFixed(1)}" rx="6" class="chart-bar-rect" />
-          <text x="${(x + barWidth / 2).toFixed(1)}" y="${height - 8}" text-anchor="middle" class="chart-axis-label">${item.month}</text>
+          <rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${barWidth.toFixed(1)}" height="${barH.toFixed(1)}" rx="6" class="${barClass}" />
+          <text x="${(x + barWidth / 2).toFixed(1)}" y="${height - 8}" text-anchor="middle" class="chart-axis-label">${item.month}${item.isDemo ? "*" : ""}</text>
         `;
       })
       .join("");

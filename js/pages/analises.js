@@ -60,11 +60,11 @@ Pages.analises = function (container) {
       <div class="card">
         <h2 class="card-title">Gastos ao longo dos meses</h2>
         ${(() => {
-          const history = State.data.historicalMonths.map((h) => ({ month: h.month, expenses: h.expenses }));
-          history.push({ month: Calculations.getMonthLabel().split("/")[0], expenses: Calculations.getMonthExpenses() });
+          const history = State.data.historicalMonths.map((h) => ({ month: h.month, expenses: h.expenses, isDemo: true }));
+          history.push({ month: Calculations.getMonthLabel().split("/")[0], expenses: Calculations.getMonthExpenses(), isDemo: false });
           return Charts.bar(history, "expenses");
         })()}
-        <p class="text-muted" style="margin-top:8px">Meses anteriores a este são dados históricos fixos de demonstração.</p>
+        <p class="text-muted" style="margin-top:8px">* Meses com asterisco são dados históricos fixos de demonstração — não vêm de transações reais. O último mês é calculado a partir das suas transações.</p>
       </div>
 
       <div class="card">

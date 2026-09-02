@@ -466,6 +466,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .chart-line-dot { fill: var(--color-accent); }
 .chart-axis-label { font-size: 11px; fill: var(--color-text-muted); font-family: var(--font-body); }
 .chart-bar-rect { fill: var(--color-accent); }
+.chart-bar-rect--demo { fill: var(--color-border); }
 
 /* ============================================================
    TABLE
@@ -623,6 +624,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   font-weight: 500;
 }
 .bank-option:hover { border-color: var(--color-accent); background: var(--color-accent-soft); }
+.bank-option:disabled { opacity: 0.5; cursor: not-allowed; }
+.bank-option:disabled:hover { border-color: var(--color-border); background: var(--color-surface); }
 
 .modal__step--loading, .modal__step--success {
   display: flex;

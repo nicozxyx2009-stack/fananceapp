@@ -11,18 +11,23 @@
  */
 
 const CATEGORY_META = [
-  { name: "Alimentação", color: "#E8734A" },
-  { name: "Moradia", color: "#3B6E91" },
-  { name: "Transporte", color: "#6C9BCF" },
-  { name: "Lazer", color: "#F0B429" },
-  { name: "Assinaturas", color: "#8E6FCE" },
-  { name: "Saúde", color: "#4CAF7D" },
-  { name: "Compras", color: "#D1667F" },
-  { name: "Educação", color: "#5B8DEF" },
-  { name: "Outros", color: "#9AA4BC" },
+  { id: "alimentacao", name: "Alimentação", color: "#E8734A" },
+  { id: "moradia", name: "Moradia", color: "#3B6E91" },
+  { id: "transporte", name: "Transporte", color: "#6C9BCF" },
+  { id: "lazer", name: "Lazer", color: "#F0B429" },
+  { id: "assinaturas", name: "Assinaturas", color: "#8E6FCE" },
+  { id: "saude", name: "Saúde", color: "#4CAF7D" },
+  { id: "compras", name: "Compras", color: "#D1667F" },
+  { id: "educacao", name: "Educação", color: "#5B8DEF" },
+  { id: "outros", name: "Outros", color: "#9AA4BC" },
 ];
 
 const CATEGORIES = CATEGORY_META.map((c) => c.name);
+
+// Versão do "formato" dos dados salvos. Sobe quando o modelo muda de um
+// jeito que exige migração (ex: introdução de categoryId). State.js lê
+// isso ao carregar e decide se precisa rodar alguma migração.
+const SCHEMA_VERSION = 2;
 
 const Seed = {
   createInitialData() {
@@ -78,6 +83,7 @@ const Seed = {
     const startingBalance = Math.round((4850 - netSoFar) * 100) / 100;
 
     return {
+      schemaVersion: SCHEMA_VERSION,
       seededAt: new Date().toISOString(),
 
       accounts: [
